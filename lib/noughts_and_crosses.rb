@@ -35,23 +35,14 @@ class NoughtsAndCrosses
   attr_reader :current_player_index
   attr_reader :players
 
+  MAGIC_SQUARE = [2, 7, 6, 9, 5, 1, 4, 3, 8]
+
   def winning_combinations
-    [2,7,6,9,5,1,4,3,8]
-      .combination(3)
-      .select {|combination| combination.sum == 15 }
-
-
-    # [
-    #   [0, 1, 2],
-    #   [3, 4, 5],
-    #   [6, 7, 8],
-
-    #   [0, 3, 6],
-    #   [1, 4, 7],
-    #   [2, 5, 8],
-
-    #   [0, 4, 8],
-    #   [2, 4, 6],
-    # ]
+    @winning_combinations ||=
+      MAGIC_SQUARE.combination(3)
+                  .select { |combination| combination.sum == 15 }
+                  .map do |combination|
+        combination.map { |magic_number| MAGIC_SQUARE.find_index(magic_number) }
+      end
   end
 end
