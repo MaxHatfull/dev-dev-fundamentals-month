@@ -25,6 +25,9 @@ class Cli
     if @game.winner
       display_board
       @output.puts "Congrats #{@game.winner}"
+    elsif @game.board.none? {|i| i.is_a?(Integer)}
+      display_board
+      @output.puts "The game is a draw"
     else
       game_loop
     end

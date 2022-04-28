@@ -77,4 +77,78 @@ GAMEOUTPUT
 
     end
   end
+
+  context "a game that ends in a draw" do
+    let(:input) { StringIO.new("0\n1\n4\n2\n5\n3\n6\n8\n7") }
+    let(:output) { StringIO.new }
+
+    it "can play a game" do
+      described_class.start_new_game(input, output)
+
+      expect(output.string).to eq <<GAMEOUTPUT
+0 | 1 | 2
+- + - + -
+3 | 4 | 5
+- + - + -
+6 | 7 | 8
+
+o | 1 | 2
+- + - + -
+3 | 4 | 5
+- + - + -
+6 | 7 | 8
+
+o | x | 2
+- + - + -
+3 | 4 | 5
+- + - + -
+6 | 7 | 8
+
+o | x | 2
+- + - + -
+3 | o | 5
+- + - + -
+6 | 7 | 8
+
+o | x | x
+- + - + -
+3 | o | 5
+- + - + -
+6 | 7 | 8
+
+o | x | x
+- + - + -
+3 | o | o
+- + - + -
+6 | 7 | 8
+
+o | x | x
+- + - + -
+x | o | o
+- + - + -
+6 | 7 | 8
+
+o | x | x
+- + - + -
+x | o | o
+- + - + -
+o | 7 | 8
+
+o | x | x
+- + - + -
+x | o | o
+- + - + -
+o | 7 | x
+
+o | x | x
+- + - + -
+x | o | o
+- + - + -
+o | o | x
+
+The game is a draw
+GAMEOUTPUT
+
+    end
+  end
 end
