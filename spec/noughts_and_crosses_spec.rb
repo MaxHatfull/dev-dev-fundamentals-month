@@ -65,6 +65,20 @@ RSpec.describe NoughtsAndCrosses do
 
         expect(game.winner).to eq nil
       end
+
+      it "is full when all spots have been taken" do
+        game.take_turn(4)
+        game.take_turn(1)
+        game.take_turn(5)
+        game.take_turn(3)
+        game.take_turn(2)
+        game.take_turn(8)
+        game.take_turn(0)
+        game.take_turn(7)
+        game.take_turn(6)
+
+        expect(game.board_full?).to eq true
+      end
     end
   end
 end

@@ -30,6 +30,10 @@ class NoughtsAndCrosses
     end.compact.fetch(0, nil)
   end
 
+  def board_full?
+    @board.none? {|i| i.is_a?(Integer)}
+  end
+
   private
 
   attr_reader :current_player_index
