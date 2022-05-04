@@ -34,7 +34,7 @@ class Cli
   end
 
   def display_board
-    @output.puts @game.board.each_slice(3).map { |s| s.join(' | ') }.join("\n- + - + -\n")
+    @output.puts @game.board_string
     @output.puts
   end
 end

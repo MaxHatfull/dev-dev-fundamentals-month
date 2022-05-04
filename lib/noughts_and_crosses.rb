@@ -34,6 +34,10 @@ class NoughtsAndCrosses
     @board.none? {|i| i.is_a?(Integer)}
   end
 
+  def board_string
+    @board.each_slice(3).map { |s| s.join(' | ') }.join("\n- + - + -\n")
+  end
+
   private
 
   attr_reader :current_player_index

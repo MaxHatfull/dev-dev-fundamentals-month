@@ -14,6 +14,10 @@ RSpec.describe NoughtsAndCrosses do
       expect(game.board).to eq([0, 1, 2, 3, 4, 5, 6, 7, 8])
     end
 
+    it "generates a string representing the game board" do
+      expect(game.board_string).to eq("0 | 1 | 2\n- + - + -\n3 | 4 | 5\n- + - + -\n6 | 7 | 8")
+    end
+
     describe "#take_turn" do
       subject { game.board }
 
