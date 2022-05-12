@@ -25,7 +25,7 @@ class Cli
     if @game.winner
       display_board
       @output.puts "Congrats #{@game.winner}"
-    elsif @game.board_full?
+    elsif @game.draw?
       display_board
       @output.puts "The game is a draw"
     else
@@ -34,7 +34,7 @@ class Cli
   end
 
   def display_board
-    @output.puts @game.board_string
+    @output.puts @game
     @output.puts
   end
 end
