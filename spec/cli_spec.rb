@@ -3,9 +3,11 @@
 require "cli"
 
 RSpec.describe Cli do
+  let(:output) { StringIO.new }
+  let(:input) { StringIO.new(moves.join("\n")) }
+
   context "a normal game" do
-    let(:input) { StringIO.new("3\n1\n4\n2\n5") }
-    let(:output) { StringIO.new }
+    let(:moves) {[3,1,4,2,5]}
 
     it "can play a game" do
       described_class.start_new_game(input, output)
@@ -54,8 +56,7 @@ GAMEOUTPUT
   end
 
   context "a game where we exit early" do
-    let(:input) { StringIO.new("3\nexit") }
-    let(:output) { StringIO.new }
+    let(:moves) { [3,"exit"] }
 
     it "can play a game" do
       described_class.start_new_game(input, output)
@@ -75,6 +76,16 @@ o | 4 | 5
 
 GAMEOUTPUT
 
+    end
+  end
+
+  context "a game that ends in a draw" do
+    let(:moves) { [0,1,4,2,5,3,6,8,7] }
+
+    it "can alert the players to a draw" do
+      described_class.start_new_game(input, output)
+
+      expect(output.string.chomp).to end_with "The game is a draw"
     end
   end
 end

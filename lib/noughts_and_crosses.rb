@@ -30,6 +30,14 @@ class NoughtsAndCrosses
     end.compact.fetch(0, nil)
   end
 
+  def draw?
+    @board.none? {|i| i.is_a?(Integer)}
+  end
+
+  def to_s
+    @board.each_slice(3).map { |s| s.join(' | ') }.join("\n- + - + -\n")
+  end
+
   private
 
   attr_reader :current_player_index

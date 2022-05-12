@@ -25,13 +25,16 @@ class Cli
     if @game.winner
       display_board
       @output.puts "Congrats #{@game.winner}"
+    elsif @game.draw?
+      display_board
+      @output.puts "The game is a draw"
     else
       game_loop
     end
   end
 
   def display_board
-    @output.puts @game.board.each_slice(3).map { |s| s.join(' | ') }.join("\n- + - + -\n")
+    @output.puts @game
     @output.puts
   end
 end
